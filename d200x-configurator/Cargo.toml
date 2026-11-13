@@ -1,0 +1,26 @@
+[package]
+name = "d200x-configurator"
+version = "0.1.0"
+edition = "2021"
+description = "Desktop configurator for the Ulanzi D200X running the deckd open firmware"
+
+[dependencies]
+d200x-core = { path = "../d200x-core" }
+deck-config = { path = "../deck-config" }
+deck-icons = { path = "../deck-icons" }
+eframe = "0.31"
+egui = "0.31"
+rfd = "0.15"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+ureq = { version = "2", features = ["json"] }
+dirs = "5"
+tungstenite = { version = "0.24", features = ["rustls-tls-webpki-roots"] }
+sha2 = "0.10"
+base64 = "0.22"
+open = "5"
+
+[profile.release]
+opt-level = 2

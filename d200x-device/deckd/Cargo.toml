@@ -1,0 +1,20 @@
+[package]
+name = "deckd"
+version = "0.1.0"
+edition = "2021"
+description = "Standalone deck daemon for the Ulanzi D200X rev 02 (SigmaStar SSD210): fbdev UI, MCU input, USB keyboard output, host config channel"
+
+[dependencies]
+deck-config = { path = "../../deck-config" }
+libc = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+fontdue = "0.9"
+png = "0.17"
+
+[profile.release]
+opt-level = 3
+lto = true
+panic = "abort"
+strip = true
+codegen-units = 1

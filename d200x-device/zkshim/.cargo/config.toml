@@ -1,0 +1,15 @@
+[build]
+target = "armv7-unknown-linux-gnueabihf"
+
+# No libc, no crt: a bare shared object linked with lld. It must load inside
+# the vendor's glibc-linked zkgui, which only needs a valid ELF .so with an
+# .init_array entry.
+[target.armv7-unknown-linux-gnueabihf]
+linker = "rust-lld"
+rustflags = [
+  "-C", "linker-flavor=ld.lld",
+  "-C", "link-arg=-nostdlib",
+  "-C", "link-arg=--no-undefined",
+  "-C", "link-arg=-soname=libzkgui.so",
+  "-C", "relocation-model=pic",
+]

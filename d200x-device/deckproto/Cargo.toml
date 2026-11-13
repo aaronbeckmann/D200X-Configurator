@@ -1,0 +1,14 @@
+[package]
+name = "deckproto"
+version = "0.1.0"
+edition = "2021"
+description = "First on-device prototype for the Ulanzi D200X (SSD210): framebuffer test pattern + MCU key/knob reader"
+
+[dependencies]
+libc = "0.2"
+
+[profile.release]
+opt-level = "z"
+lto = true
+panic = "abort"
+strip = true

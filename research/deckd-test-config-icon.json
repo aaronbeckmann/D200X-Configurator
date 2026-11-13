@@ -1,0 +1,284 @@
+{
+ "version": 1,
+ "home": "main",
+ "brightness": 90,
+ "page_order": [
+  "main",
+  "two"
+ ],
+ "pages": {
+  "main": {
+   "keys": {
+    "0": {
+     "label": "Icon",
+     "icon": "disc.png",
+     "color": "#1c2b3a",
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "c"
+      ]
+     }
+    },
+    "1": {
+     "label": "",
+     "icon": "disc.png",
+     "color": "#1c2b3a",
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "v"
+      ]
+     }
+    },
+    "2": {
+     "label": "Pushed!",
+     "color": "#e67e22",
+     "action": {
+      "type": "text",
+      "text": "config pushed from d200x-tool\n"
+     }
+    },
+    "3": {
+     "label": "Undo",
+     "color": "#7a4fd8",
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "z"
+      ]
+     }
+    },
+    "4": {
+     "label": "Redo",
+     "color": "#7a4fd8",
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "y"
+      ]
+     }
+    },
+    "5": {
+     "label": "Save",
+     "color": "#1f9d55",
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "s"
+      ]
+     }
+    },
+    "6": {
+     "label": "Macro",
+     "color": "#16a085",
+     "action": {
+      "type": "macro",
+      "steps": [
+       {
+        "type": "text",
+        "text": "one "
+       },
+       {
+        "delay_ms": 300
+       },
+       {
+        "type": "text",
+        "text": "two "
+       },
+       {
+        "delay_ms": 300
+       },
+       {
+        "type": "text",
+        "text": "three\n"
+       }
+      ]
+     }
+    },
+    "7": {
+     "label": "Hello",
+     "color": "#c0392b",
+     "action": {
+      "type": "text",
+      "text": "Hello from deckd\n"
+     }
+    },
+    "8": {
+     "label": "Desktop",
+     "color": "#d35400",
+     "action": {
+      "type": "key",
+      "keys": [
+       "gui",
+       "d"
+      ]
+     }
+    },
+    "9": {
+     "label": "Enter",
+     "color": "#d35400",
+     "action": {
+      "type": "key",
+      "keys": [
+       "enter"
+      ]
+     }
+    },
+    "10": {
+     "label": "Alt Tab",
+     "color": "#555555",
+     "action": {
+      "type": "key",
+      "keys": [
+       "alt",
+       "tab"
+      ]
+     }
+    },
+    "11": {
+     "label": "Mute",
+     "color": "#555555",
+     "action": {
+      "type": "key",
+      "keys": [
+       "mute"
+      ]
+     }
+    },
+    "12": {
+     "label": "Page 2",
+     "color": "#8e44ad",
+     "action": {
+      "type": "page",
+      "page": "two"
+     }
+    },
+    "13": {
+     "label": "deckd  config v2",
+     "color": "#1c2b3a",
+     "action": {
+      "type": "none"
+     }
+    }
+   },
+   "knobs": [
+    {
+     "label": "Vol",
+     "press": {
+      "type": "key",
+      "keys": [
+       "mute"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "volumedown"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "volumeup"
+      ]
+     }
+    },
+    {
+     "label": "Arrows",
+     "press": {
+      "type": "key",
+      "keys": [
+       "home"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "left"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "right"
+      ]
+     }
+    },
+    {
+     "label": "Tabs",
+     "press": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "w"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "shift",
+       "tab"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "tab"
+      ]
+     }
+    }
+   ]
+  },
+  "two": {
+   "keys": {
+    "0": {
+     "label": "F1",
+     "color": "#34495e",
+     "action": {
+      "type": "key",
+      "keys": [
+       "f1"
+      ]
+     }
+    },
+    "1": {
+     "label": "F2",
+     "color": "#34495e",
+     "action": {
+      "type": "key",
+      "keys": [
+       "f2"
+      ]
+     }
+    },
+    "2": {
+     "label": "F3",
+     "color": "#34495e",
+     "action": {
+      "type": "key",
+      "keys": [
+       "f3"
+      ]
+     }
+    },
+    "13": {
+     "label": "Back",
+     "color": "#8e44ad",
+     "action": {
+      "type": "page",
+      "page": "main"
+     }
+    }
+   },
+   "knobs": []
+  }
+ }
+}

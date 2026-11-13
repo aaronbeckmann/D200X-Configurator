@@ -1,0 +1,20 @@
+# build output
+target/
+esp32-bridge/build/
+esp32-bridge/managed_components/
+esp32-bridge/sdkconfig
+esp32-bridge/sdkconfig.old
+node_modules/
+d200x-device/image/out/
+d200x-device/image/stage/
+d200x-device/image/EasyUI.cfg.tmp
+__pycache__/
+
+# dumps from the device and vendor firmware: not ours to publish
+research/adb*/
+research/stock-firmware/
+research/captures/*.pcap
+research/captures/payloads/
+
+# Mojang assets, extracted from the local game jar for local use only
+assets/minecraft/

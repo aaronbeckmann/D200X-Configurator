@@ -1,0 +1,13 @@
+[package]
+name = "deck-icons"
+version = "0.1.0"
+edition = "2021"
+description = "Icon rendering for the D200X deck: Material Design Icons (SVG) and image files to tile-sized PNGs"
+
+[dependencies]
+resvg = "0.45"
+usvg = "0.45"
+tiny-skia = "0.11"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+anyhow = "1"

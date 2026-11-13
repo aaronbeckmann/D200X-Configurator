@@ -1,0 +1,10 @@
+{
+  "name": "d200x-agentdeck-bridge",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "dependencies": {
+    "@agentdeck/shared": "1.9.6",
+    "@resvg/resvg-wasm": "2.6.2"
+  }
+}

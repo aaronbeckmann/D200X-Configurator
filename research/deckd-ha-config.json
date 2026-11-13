@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "home": "main",
+  "brightness": 90,
+  "page_order": ["main", "two"],
+  "pages": {
+    "main": {
+      "keys": {
+        "0": {
+          "label": "Büro",
+          "icon": "mdi-lightbulb-outline-9aa5b1.png",
+          "color": "#1c2b3a",
+          "action": { "type": "host", "plugin": "homeassistant", "op": "toggle", "args": { "entity_id": "light.buro_aaron_licht" } },
+          "state": "ha:light.buro_aaron_licht",
+          "looks": {
+            "on":  { "icon": "mdi-lightbulb-on-f5b400.png", "color": "#4a3a10" },
+            "off": { "icon": "mdi-lightbulb-outline-9aa5b1.png", "color": "#1c2b3a" }
+          }
+        },
+        "1": {
+          "label": "--",
+          "icon": "mdi-thermometer-7fd3ff.png",
+          "color": "#15303a",
+          "action": { "type": "none" },
+          "value": "ha:sensor.alpstuga_air_quality_monitor_temperatur:text"
+        },
+        "2": {
+          "label": "HA",
+          "icon": "mdi-web-ffffff.png",
+          "color": "#1f6f8b",
+          "action": { "type": "host", "plugin": "system", "op": "url", "args": { "url": "http://homeassistant.local:8123" } }
+        },
+        "3": {
+          "label": "Play",
+          "icon": "mdi-play-pause-ffffff.png",
+          "color": "#2d6cdf",
+          "action": { "type": "host", "plugin": "system", "op": "media", "args": { "key": "play_pause" } }
+        },
+        "4": { "label": "Copy", "color": "#2d6cdf", "action": { "type": "key", "keys": ["ctrl", "c"] } },
+        "5": { "label": "Paste", "color": "#2d6cdf", "action": { "type": "key", "keys": ["ctrl", "v"] } },
+        "6": { "label": "Undo", "color": "#7a4fd8", "action": { "type": "key", "keys": ["ctrl", "z"] } },
+        "7": { "label": "Hello", "color": "#c0392b", "action": { "type": "text", "text": "Hello from deckd\n" } },
+        "8": { "label": "Desktop", "color": "#d35400", "action": { "type": "key", "keys": ["gui", "d"] } },
+        "9": { "label": "Enter", "color": "#d35400", "action": { "type": "key", "keys": ["enter"] } },
+        "10": { "label": "Alt Tab", "color": "#555555", "action": { "type": "key", "keys": ["alt", "tab"] } },
+        "11": { "label": "Mute", "color": "#555555", "action": { "type": "key", "keys": ["mute"] } },
+        "12": { "label": "Page 2", "color": "#8e44ad", "action": { "type": "page", "page": "two" } },
+        "13": { "label": "deckd + agent", "color": "#1c2b3a", "action": { "type": "none" } }
+      },
+      "knobs": [
+        { "label": "Büro %", "press": { "type": "host", "plugin": "homeassistant", "op": "brightness", "args": { "entity_id": "light.buro_aaron_licht" } },
+          "left":  { "type": "host", "plugin": "homeassistant", "op": "brightness", "args": { "entity_id": "light.buro_aaron_licht", "step": 10 } },
+          "right": { "type": "host", "plugin": "homeassistant", "op": "brightness", "args": { "entity_id": "light.buro_aaron_licht", "step": 10 } } },
+        { "label": "Arrows", "press": { "type": "key", "keys": ["home"] }, "left": { "type": "key", "keys": ["left"] }, "right": { "type": "key", "keys": ["right"] } },
+        { "label": "Vol", "press": { "type": "key", "keys": ["mute"] }, "left": { "type": "key", "keys": ["volumedown"] }, "right": { "type": "key", "keys": ["volumeup"] } }
+      ]
+    },
+    "two": {
+      "keys": {
+        "0": { "label": "F1", "color": "#34495e", "action": { "type": "key", "keys": ["f1"] } },
+        "13": { "label": "Back", "color": "#8e44ad", "action": { "type": "page", "page": "main" } }
+      },
+      "knobs": []
+    }
+  }
+}

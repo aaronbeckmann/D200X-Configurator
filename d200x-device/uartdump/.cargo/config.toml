@@ -1,0 +1,12 @@
+[build]
+target = "armv7-unknown-linux-musleabihf"
+
+# Static musl binary linked with Rust's bundled lld and self-contained crt
+# objects, so no cross gcc is needed on the host.
+[target.armv7-unknown-linux-musleabihf]
+linker = "rust-lld"
+rustflags = [
+  "-C", "target-feature=+crt-static",
+  "-C", "linker-flavor=ld.lld",
+  "-C", "link-self-contained=yes",
+]

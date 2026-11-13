@@ -1,0 +1,351 @@
+{
+ "layout": {
+  "row_y": [
+   0,
+   195,
+   390
+  ],
+  "row_h": 150,
+  "col_x": [
+   3,
+   199,
+   395,
+   591,
+   787
+  ],
+  "col_w": 160,
+  "wide": [
+   591,
+   390,
+   356,
+   150
+  ],
+  "radius": 14,
+  "text_pad": 18
+ },
+ "version": 1,
+ "home": "main",
+ "brightness": 100,
+ "dim_after_s": 120,
+ "dim_brightness": 15,
+ "off_after_s": 900,
+ "side_left": {
+  "type": "page-prev"
+ },
+ "side_right": {
+  "type": "page-next"
+ },
+ "page_order": [
+  "main",
+  "two"
+ ],
+ "pages": {
+  "main": {
+   "keys": {
+    "0": {
+     "label": "Icon",
+     "icon": "disc.png",
+     "color": "#1c2b3a",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "c"
+      ]
+     }
+    },
+    "1": {
+     "label": "",
+     "icon": "disc.png",
+     "color": "#1c2b3a",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "v"
+      ]
+     }
+    },
+    "10": {
+     "label": "Alt Tab",
+     "icon": null,
+     "color": "#555555",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "alt",
+       "tab"
+      ]
+     }
+    },
+    "11": {
+     "label": "Mute",
+     "icon": null,
+     "color": "#555555",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "mute"
+      ]
+     }
+    },
+    "12": {
+     "label": "Page 2",
+     "icon": null,
+     "color": "#8e44ad",
+     "text_color": null,
+     "action": {
+      "type": "page",
+      "page": "two"
+     }
+    },
+    "13": {
+     "label": "deckd  config v2",
+     "icon": null,
+     "color": "#1c2b3a",
+     "text_color": null,
+     "action": {
+      "type": "none"
+     }
+    },
+    "2": {
+     "label": "Pushed!",
+     "icon": null,
+     "color": "#e67e22",
+     "text_color": null,
+     "action": {
+      "type": "text",
+      "text": "config pushed from d200x-tool\n"
+     }
+    },
+    "3": {
+     "label": "Undo",
+     "icon": null,
+     "color": "#7a4fd8",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "z"
+      ]
+     }
+    },
+    "4": {
+     "label": "Redo",
+     "icon": null,
+     "color": "#7a4fd8",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "y"
+      ]
+     }
+    },
+    "5": {
+     "label": "Save",
+     "icon": null,
+     "color": "#1f9d55",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "s"
+      ]
+     }
+    },
+    "6": {
+     "label": "Macro",
+     "icon": null,
+     "color": "#16a085",
+     "text_color": null,
+     "action": {
+      "type": "macro",
+      "steps": [
+       {
+        "type": "text",
+        "text": "one "
+       },
+       {
+        "delay_ms": 300
+       },
+       {
+        "type": "text",
+        "text": "two "
+       },
+       {
+        "delay_ms": 300
+       },
+       {
+        "type": "text",
+        "text": "three\n"
+       }
+      ]
+     }
+    },
+    "7": {
+     "label": "Hello",
+     "icon": null,
+     "color": "#c0392b",
+     "text_color": null,
+     "action": {
+      "type": "text",
+      "text": "Hello from deckd\n"
+     }
+    },
+    "8": {
+     "label": "Desktop",
+     "icon": null,
+     "color": "#d35400",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "gui",
+       "d"
+      ]
+     }
+    },
+    "9": {
+     "label": "Enter",
+     "icon": null,
+     "color": "#d35400",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "enter"
+      ]
+     }
+    }
+   },
+   "knobs": [
+    {
+     "label": "Vol",
+     "press": {
+      "type": "key",
+      "keys": [
+       "mute"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "volumedown"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "volumeup"
+      ]
+     }
+    },
+    {
+     "label": "Arrows",
+     "press": {
+      "type": "key",
+      "keys": [
+       "home"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "left"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "right"
+      ]
+     }
+    },
+    {
+     "label": "Tabs",
+     "press": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "w"
+      ]
+     },
+     "left": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "shift",
+       "tab"
+      ]
+     },
+     "right": {
+      "type": "key",
+      "keys": [
+       "ctrl",
+       "tab"
+      ]
+     }
+    }
+   ]
+  },
+  "two": {
+   "keys": {
+    "0": {
+     "label": "F1",
+     "icon": null,
+     "color": "#34495e",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "f1"
+      ]
+     }
+    },
+    "1": {
+     "label": "F2",
+     "icon": null,
+     "color": "#34495e",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "f2"
+      ]
+     }
+    },
+    "13": {
+     "label": "Back",
+     "icon": null,
+     "color": "#8e44ad",
+     "text_color": null,
+     "action": {
+      "type": "page",
+      "page": "main"
+     }
+    },
+    "2": {
+     "label": "F3",
+     "icon": null,
+     "color": "#34495e",
+     "text_color": null,
+     "action": {
+      "type": "key",
+      "keys": [
+       "f3"
+      ]
+     }
+    }
+   },
+   "knobs": []
+  }
+ }
+}

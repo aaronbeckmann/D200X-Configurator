@@ -1,0 +1,13 @@
+[build]
+target = "armv7-unknown-linux-musleabihf"
+
+[target.armv7-unknown-linux-musleabihf]
+linker = "rust-lld"
+rustflags = [
+  "-C", "target-feature=+crt-static",
+  # SSD210: Cortex-A7 with NEON (see /proc/cpuinfo in INVESTIGATION.md)
+  "-C", "target-cpu=cortex-a7",
+  "-C", "target-feature=+neon",
+  "-C", "linker-flavor=ld.lld",
+  "-C", "link-self-contained=yes",
+]

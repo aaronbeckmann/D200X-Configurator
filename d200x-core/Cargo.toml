@@ -1,0 +1,10 @@
+[package]
+name = "d200x-core"
+version = "0.1.0"
+edition = "2021"
+description = "Ulanzi D200X host library: vendor HID protocol and deckd configuration channel"
+
+[dependencies]
+hidapi = "2"
+anyhow = "1"
+serde_json = "1"
