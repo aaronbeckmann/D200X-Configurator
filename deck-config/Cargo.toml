@@ -2,6 +2,7 @@
 name = "deck-config"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Shared configuration model for the deckd firmware and the D200X configurator"
 
 [dependencies]

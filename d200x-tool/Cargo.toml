@@ -2,6 +2,7 @@
 name = "d200x-tool"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "CLI for the Ulanzi D200/D200H/D200X vendor HID protocol and the deckd firmware"
 
 [dependencies]

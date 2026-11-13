@@ -2,6 +2,7 @@
 name = "d200x-configurator"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Desktop configurator for the Ulanzi D200X running the deckd open firmware"
 
 [dependencies]

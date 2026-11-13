@@ -2,6 +2,7 @@
 name = "uartdump"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Raw dump of /dev/ttyS1 on the Ulanzi D200X (SSD210) for MCU protocol analysis"
 
 [dependencies]

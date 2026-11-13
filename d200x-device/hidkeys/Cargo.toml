@@ -2,6 +2,7 @@
 name = "hidkeys"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Standalone demo: deck keys -> USB keyboard reports via /dev/hidg0 (Ulanzi D200X SSD210)"
 
 [dependencies]

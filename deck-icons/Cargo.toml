@@ -2,6 +2,7 @@
 name = "deck-icons"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Icon rendering for the D200X deck: Material Design Icons (SVG) and image files to tile-sized PNGs"
 
 [dependencies]

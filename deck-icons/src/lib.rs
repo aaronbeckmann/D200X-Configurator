@@ -129,13 +129,25 @@ pub fn minecraft_dir() -> Option<PathBuf> {
         std::env::var("D200X_MINECRAFT_DIR").ok().map(PathBuf::from),
         std::env::current_exe().ok().and_then(|e| e.parent().map(|p| p.join("assets/minecraft/item"))),
         Some(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../assets/minecraft/item")),
+        user_minecraft_dir(),
     ];
     candidates.into_iter().flatten().find(|p| p.is_dir())
 }
 
-/// Where [`import_minecraft`] writes by default (next to the MDI set).
+/// Where [`import_minecraft`] writes by default: next to the MDI set in the
+/// source tree, or, for an installed copy (no source tree on this PC), the
+/// user's `%APPDATA%\d200x\minecraft\item`.
 pub fn minecraft_default_dir() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../assets/minecraft/item")
+    let assets = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../assets");
+    if assets.join("mdi").is_dir() {
+        return assets.join("minecraft/item");
+    }
+    user_minecraft_dir().unwrap_or_else(|| PathBuf::from("assets/minecraft/item"))
+}
+
+/// Per-user location for imported textures (writable without admin rights).
+fn user_minecraft_dir() -> Option<PathBuf> {
+    std::env::var("APPDATA").ok().map(|a| PathBuf::from(a).join("d200x").join("minecraft").join("item"))
 }
 
 /// All imported Minecraft item names, sorted.

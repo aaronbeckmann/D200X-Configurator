@@ -2,6 +2,7 @@
 name = "d200x-core"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Ulanzi D200X host library: vendor HID protocol and deckd configuration channel"
 
 [dependencies]

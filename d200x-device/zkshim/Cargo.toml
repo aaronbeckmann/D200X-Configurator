@@ -2,6 +2,7 @@
 name = "zkshim"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "Drop-in replacement for libzkgui.so: its ELF constructor execs deckd, so the stock zkgui launcher starts the Rust firmware"
 
 [lib]

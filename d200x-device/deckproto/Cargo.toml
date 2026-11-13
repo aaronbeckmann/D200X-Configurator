@@ -2,6 +2,7 @@
 name = "deckproto"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "First on-device prototype for the Ulanzi D200X (SSD210): framebuffer test pattern + MCU key/knob reader"
 
 [dependencies]

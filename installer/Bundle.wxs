@@ -1,0 +1,25 @@
+<!--
+  Setup .exe (WiX Burn bundle) wrapping D200X-Configurator.msi with a standard
+  install dialog and a "Launch" button. Per-user: no admin rights needed.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+  <Bundle Name="D200X Configurator"
+          Manufacturer="Aaron Beckmann"
+          Version="$(var.Version)"
+          UpgradeCode="$(var.BundleUpgradeCode)"
+          AboutUrl="https://github.com/aaronbeckmann/D200X-Configurator"
+          IconSourceFile="$(sys.SOURCEFILEDIR)d200x.ico">
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication
+          Theme="hyperlinkLicense"
+          LicenseUrl="https://github.com/aaronbeckmann/D200X-Configurator/blob/main/LICENSE"
+          LaunchTarget="[LocalAppDataFolder]Programs\D200X Configurator\d200x-configurator.exe"
+          SuppressOptionsUI="yes"
+          ShowVersion="yes" />
+    </BootstrapperApplication>
+    <Chain>
+      <MsiPackage SourceFile="$(var.MsiPath)" />
+    </Chain>
+  </Bundle>
+</Wix>

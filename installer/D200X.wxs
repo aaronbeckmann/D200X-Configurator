@@ -1,0 +1,136 @@
+<!--
+  Per-user MSI (no admin rights): installs the configurator, the PC agent and
+  the CLI tool to %LOCALAPPDATA%\Programs\D200X Configurator, together with the
+  MDI icon set (assets\mdi) and the agent's Node bridge (bridge\), which the
+  programs look up next to their exe. Built by installer\build.ps1.
+
+  UpgradeCode must never change: it lets new versions replace old ones.
+  User data in %APPDATA%\d200x (config, agent.json, icons) is left alone.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <Package Name="D200X Configurator"
+           Manufacturer="Aaron Beckmann"
+           Version="$(var.Version)"
+           UpgradeCode="$(var.UpgradeCode)"
+           Scope="perUser"
+           Language="1033">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of the D200X Configurator is already installed." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/aaronbeckmann/D200X-Configurator" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    <Icon Id="AppIcon.ico" SourceFile="$(sys.SOURCEFILEDIR)d200x.ico" />
+
+    <!-- A strict per-user MSI does not redirect ProgramFiles to the profile:
+         install explicitly into %LOCALAPPDATA%\Programs (no admin needed). -->
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="UserProgramsFolder" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="D200X Configurator">
+          <Directory Id="ASSETSDIR" Name="assets">
+            <Directory Id="MDIDIR" Name="mdi">
+              <Directory Id="MDISVGDIR" Name="svg" />
+            </Directory>
+          </Directory>
+          <Directory Id="BRIDGEDIR" Name="bridge" />
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="D200X Configurator">
+      <ComponentGroupRef Id="Programs" />
+      <ComponentGroupRef Id="MdiIcons" />
+      <ComponentGroupRef Id="AgentBridge" />
+      <ComponentRef Id="StartMenuShortcut" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <ComponentGroup Id="Programs" Directory="INSTALLFOLDER">
+      <Component Id="ConfiguratorExe" Guid="5B1E2C3A-7F40-4C6E-9D2B-8A1F0E3C4D51">
+        <File Id="ConfiguratorExeFile" Source="$(var.BinDir)\d200x-configurator.exe" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="configurator" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="RemoveInstallFolder" On="uninstall" />
+        <!-- only removed if empty (other apps use it too) -->
+        <RemoveFolder Id="RemoveUserPrograms" Directory="UserProgramsFolder" On="uninstall" />
+      </Component>
+      <Component Id="AgentExe" Guid="C2A97D14-3E6B-4F85-B0C9-6D2E1A7F8B32">
+        <File Id="AgentExeFile" Source="$(var.BinDir)\d200x-agent.exe" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="agent" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+      <Component Id="ToolExe" Guid="8E4F6A21-9B3C-4D7E-A1F5-2C8B0D9E6A13">
+        <File Id="ToolExeFile" Source="$(var.BinDir)\d200x-tool.exe" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="tool" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+      <Component Id="License" Guid="A47E19C3-5D2B-4F60-8E1A-93C7B2D04F85">
+        <File Id="LicenseTxt" Source="$(var.RootDir)\LICENSE" Name="LICENSE.txt" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="license" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Material Design Icons (Apache-2.0, LICENSE included) -->
+    <ComponentGroup Id="MdiIcons">
+      <Component Id="MdiMeta" Directory="MDIDIR" Guid="1F7C3B92-6A4D-4E8F-9C21-B5D0E7A3F648">
+        <File Id="MdiMetaJson" Source="$(var.RootDir)\assets\mdi\meta.json" />
+        <File Id="MdiLicense" Source="$(var.RootDir)\assets\mdi\LICENSE" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="mdi" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="RemoveAssetsDir" Directory="ASSETSDIR" On="uninstall" />
+        <RemoveFolder Id="RemoveMdiDir" Directory="MDIDIR" On="uninstall" />
+        <RemoveFolder Id="RemoveMdiSvgDir" Directory="MDISVGDIR" On="uninstall" />
+      </Component>
+      <Files Directory="MDISVGDIR" Include="$(var.RootDir)\assets\mdi\svg\*.svg" />
+    </ComponentGroup>
+
+    <!-- Node bridge for the official AgentDeck tiles (needs Node.js installed) -->
+    <ComponentGroup Id="AgentBridge">
+      <Files Directory="BRIDGEDIR" Include="$(var.RootDir)\d200x-agent\bridge\**" />
+    </ComponentGroup>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Component Id="StartMenuShortcut">
+        <Shortcut Id="StartMenuConfigurator"
+                  Name="D200X Configurator"
+                  Description="Configure the Ulanzi D200X (deckd firmware)"
+                  Target="[INSTALLFOLDER]d200x-configurator.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon.ico" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="startmenu" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <StandardDirectory Id="DesktopFolder">
+      <Component Id="DesktopShortcut">
+        <Shortcut Id="DesktopConfigurator"
+                  Name="D200X Configurator"
+                  Description="Configure the Ulanzi D200X (deckd firmware)"
+                  Target="[INSTALLFOLDER]d200x-configurator.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon.ico" />
+        <RegistryValue Root="HKCU" Key="Software\D200X Configurator" Name="desktop" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <!--
+      Uninstall cleanup, limited to THIS installation so a development build
+      of the agent/configurator running from the source tree is left alone:
+      - stop d200x-agent / d200x-configurator processes started from the
+        install folder (otherwise their files are locked)
+      - remove the "D200X Agent" sign-in entry only if it points into the
+        install folder (kept on upgrades: same path afterwards)
+      PowerShell without braces: MSI formatting would eat {...} groups.
+    -->
+    <SetProperty Id="StopInstalledProcesses" Sequence="execute" Before="StopInstalledProcesses"
+                 Value="&quot;[System64Folder]WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command &quot;Get-Process d200x-agent,d200x-configurator -ErrorAction SilentlyContinue | Where-Object Path -like '[INSTALLFOLDER]*' | Stop-Process -Force; exit 0&quot;" />
+    <CustomAction Id="StopInstalledProcesses" BinaryRef="Wix4UtilCA_X64" DllEntry="WixQuietExec"
+                  Execute="deferred" Impersonate="yes" Return="ignore" />
+
+    <SetProperty Id="RemoveAutostart" Sequence="execute" Before="RemoveAutostart"
+                 Value="&quot;[System64Folder]WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command &quot;Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'D200X Agent' -ErrorAction SilentlyContinue | Where-Object 'D200X Agent' -like '*[INSTALLFOLDER]*' | Remove-ItemProperty -Name 'D200X Agent'; exit 0&quot;" />
+    <CustomAction Id="RemoveAutostart" BinaryRef="Wix4UtilCA_X64" DllEntry="WixQuietExec"
+                  Execute="deferred" Impersonate="yes" Return="ignore" />
+
+    <InstallExecuteSequence>
+      <Custom Action="StopInstalledProcesses" Before="RemoveFiles" Condition="REMOVE=&quot;ALL&quot;" />
+      <Custom Action="RemoveAutostart" After="StopInstalledProcesses" Condition="REMOVE=&quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
+    </InstallExecuteSequence>
+  </Package>
+</Wix>

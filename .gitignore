@@ -18,3 +18,7 @@ research/captures/payloads/
 
 # Mojang assets, extracted from the local game jar for local use only
 assets/minecraft/
+
+# installer output
+dist/
+*.wixpdb

@@ -2,6 +2,7 @@
 name = "d200x-agent"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 description = "PC agent for the deckd firmware: runs host actions (system, Home Assistant) and feeds states to the deck"
 
 [dependencies]
